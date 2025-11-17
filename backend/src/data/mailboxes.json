@@ -1,0 +1,43 @@
+[{
+		"id": "mailbox-1",
+		"name": "Inbox",
+		"userId": "user-1",
+		"icon": "inbox",
+		"unreadCount": 3
+	},
+	{
+		"id": "mailbox-2",
+		"name": "Starred",
+		"userId": "user-1",
+		"icon": "star",
+		"unreadCount": 1
+	},
+	{
+		"id": "mailbox-3",
+		"name": "Sent",
+		"userId": "user-1",
+		"icon": "send",
+		"unreadCount": 0
+	},
+	{
+		"id": "mailbox-4",
+		"name": "Drafts",
+		"userId": "user-1",
+		"icon": "draft",
+		"unreadCount": 2
+	},
+	{
+		"id": "mailbox-5",
+		"name": "Archive",
+		"userId": "user-1",
+		"icon": "archive",
+		"unreadCount": 0
+	},
+	{
+		"id": "mailbox-6",
+		"name": "Trash",
+		"userId": "user-1",
+		"icon": "trash",
+		"unreadCount": 0
+	}
+]

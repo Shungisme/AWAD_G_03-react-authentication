@@ -1,0 +1,226 @@
+[{
+		"id": "email-1",
+		"mailboxId": "mailbox-1",
+		"userId": "user-1",
+		"from": {
+			"name": "Sarah Williams",
+			"email": "sarah.williams@techcorp.com"
+		},
+		"to": [{
+			"name": "Demo User",
+			"email": "demo@example.com"
+		}],
+		"cc": [],
+		"subject": "Q4 Project Proposal Review",
+		"body": "<p>Hi Demo,</p><p>I hope this email finds you well. I wanted to reach out regarding the Q4 project proposal that we discussed last week.</p><p>After reviewing the documentation, I have a few suggestions that could improve our implementation strategy:</p><ul><li>Consider adding more detailed timeline milestones</li><li>Budget allocation needs revision for the development phase</li><li>We should include risk mitigation strategies</li></ul><p>Could we schedule a meeting next Tuesday to discuss these points?</p><p>Best regards,<br>Sarah Williams<br>Senior Project Manager</p>",
+		"preview": "Hi Demo, I hope this email finds you well. I wanted to reach out regarding the Q4 project proposal...",
+		"isRead": false,
+		"isStarred": false,
+		"timestamp": "2025-11-18T09:30:00.000Z",
+		"attachments": [{
+			"name": "Q4_Proposal_Draft.pdf",
+			"size": "2.4 MB",
+			"type": "application/pdf"
+		}]
+	},
+	{
+		"id": "email-2",
+		"mailboxId": "mailbox-1",
+		"userId": "user-1",
+		"from": {
+			"name": "GitHub Notifications",
+			"email": "noreply@github.com"
+		},
+		"to": [{
+			"name": "Demo User",
+			"email": "demo@example.com"
+		}],
+		"cc": [],
+		"subject": "[repo-name] Pull Request #142: Add authentication middleware",
+		"body": "<p>A new pull request has been opened in your repository.</p><p><strong>Pull Request #142</strong></p><p><strong>Title:</strong> Add authentication middleware</p><p><strong>Author:</strong> @johndeveloper</p><p><strong>Changes:</strong></p><ul><li>Added JWT authentication middleware</li><li>Implemented token refresh logic</li><li>Updated API documentation</li><li>Added unit tests (coverage: 95%)</li></ul><p>View pull request: <a href='#'>https://github.com/user/repo-name/pull/142</a></p>",
+		"preview": "A new pull request has been opened in your repository. Pull Request #142: Add authentication middleware...",
+		"isRead": false,
+		"isStarred": true,
+		"timestamp": "2025-11-18T08:15:00.000Z",
+		"attachments": []
+	},
+	{
+		"id": "email-3",
+		"mailboxId": "mailbox-1",
+		"userId": "user-1",
+		"from": {
+			"name": "Marketing Team",
+			"email": "marketing@company.com"
+		},
+		"to": [{
+			"name": "Demo User",
+			"email": "demo@example.com"
+		}],
+		"cc": [{
+			"name": "Sales Team",
+			"email": "sales@company.com"
+		}],
+		"subject": "New Campaign Launch - Action Required",
+		"body": "<p>Dear Team,</p><p>We're excited to announce the launch of our new product campaign next month!</p><p><strong>Campaign Details:</strong></p><p>Launch Date: December 1, 2025<br>Duration: 3 months<br>Target Audience: Enterprise customers<br>Budget: $50,000</p><p><strong>Action Items:</strong></p><ol><li>Review the campaign strategy document (attached)</li><li>Provide feedback by November 22</li><li>Attend the kickoff meeting on November 25</li></ol><p>Please confirm your availability for the meeting.</p><p>Thanks,<br>Marketing Team</p>",
+		"preview": "Dear Team, We're excited to announce the launch of our new product campaign next month!...",
+		"isRead": false,
+		"isStarred": false,
+		"timestamp": "2025-11-17T16:45:00.000Z",
+		"attachments": [{
+				"name": "Campaign_Strategy_2025.pptx",
+				"size": "5.8 MB",
+				"type": "application/vnd.ms-powerpoint"
+			},
+			{
+				"name": "Budget_Breakdown.xlsx",
+				"size": "1.2 MB",
+				"type": "application/vnd.ms-excel"
+			}
+		]
+	},
+	{
+		"id": "email-4",
+		"mailboxId": "mailbox-1",
+		"userId": "user-1",
+		"from": {
+			"name": "LinkedIn",
+			"email": "notifications@linkedin.com"
+		},
+		"to": [{
+			"name": "Demo User",
+			"email": "demo@example.com"
+		}],
+		"cc": [],
+		"subject": "Your weekly job matches are ready",
+		"body": "<p>Hi Demo,</p><p>Based on your profile and preferences, we found 12 new job opportunities that might interest you:</p><ul><li><strong>Senior Full-Stack Developer</strong> at TechCorp Inc. - $120k-$150k</li><li><strong>Lead Frontend Engineer</strong> at StartupXYZ - $130k-$160k</li><li><strong>Software Architect</strong> at Enterprise Co. - $140k-$180k</li></ul><p>View all matches: <a href='#'>Click here</a></p><p>Keep your profile updated to get better recommendations!</p>",
+		"preview": "Hi Demo, Based on your profile and preferences, we found 12 new job opportunities that might interest you...",
+		"isRead": true,
+		"isStarred": false,
+		"timestamp": "2025-11-17T07:00:00.000Z",
+		"attachments": []
+	},
+	{
+		"id": "email-5",
+		"mailboxId": "mailbox-1",
+		"userId": "user-1",
+		"from": {
+			"name": "DevOps Team",
+			"email": "devops@company.com"
+		},
+		"to": [{
+			"name": "Demo User",
+			"email": "demo@example.com"
+		}],
+		"cc": [],
+		"subject": "Urgent: Server Maintenance Scheduled",
+		"body": "<p>Dear Development Team,</p><p><strong style='color: red;'>IMPORTANT NOTICE</strong></p><p>We will be performing critical server maintenance:</p><p><strong>Maintenance Window:</strong><br>Date: November 20, 2025<br>Time: 2:00 AM - 6:00 AM EST<br>Duration: Approximately 4 hours</p><p><strong>Impact:</strong></p><ul><li>All production services will be unavailable</li><li>Database access will be restricted</li><li>CI/CD pipelines will be paused</li></ul><p><strong>Required Actions:</strong></p><ol><li>Complete all critical deployments before maintenance window</li><li>Notify your team members and stakeholders</li><li>Prepare rollback procedures if needed</li></ol><p>Please contact us immediately if you have any concerns.</p><p>Best,<br>DevOps Team</p>",
+		"preview": "Dear Development Team, IMPORTANT NOTICE: We will be performing critical server maintenance...",
+		"isRead": true,
+		"isStarred": true,
+		"timestamp": "2025-11-16T14:30:00.000Z",
+		"attachments": [{
+			"name": "Maintenance_Plan.pdf",
+			"size": "890 KB",
+			"type": "application/pdf"
+		}]
+	},
+	{
+		"id": "email-6",
+		"mailboxId": "mailbox-2",
+		"userId": "user-1",
+		"from": {
+			"name": "CEO Office",
+			"email": "ceo@company.com"
+		},
+		"to": [{
+			"name": "All Staff",
+			"email": "allstaff@company.com"
+		}],
+		"cc": [],
+		"subject": "Company-wide Town Hall Meeting",
+		"body": "<p>Dear Team,</p><p>I'm pleased to invite you to our quarterly Town Hall meeting where we'll discuss our achievements, challenges, and roadmap for 2026.</p><p><strong>Details:</strong></p><p>Date: November 30, 2025<br>Time: 3:00 PM EST<br>Location: Main Conference Hall / Virtual (Teams Link)</p><p><strong>Agenda:</strong></p><ul><li>Q4 Performance Review</li><li>2026 Strategic Initiatives</li><li>New Product Announcements</li><li>Team Recognitions & Awards</li><li>Open Q&A Session</li></ul><p>Your participation is highly valued. Please submit your questions in advance.</p><p>Looking forward to seeing everyone there!</p><p>Best regards,<br>CEO</p>",
+		"preview": "Dear Team, I'm pleased to invite you to our quarterly Town Hall meeting where we'll discuss our achievements...",
+		"isRead": false,
+		"isStarred": true,
+		"timestamp": "2025-11-16T10:00:00.000Z",
+		"attachments": []
+	},
+	{
+		"id": "email-7",
+		"mailboxId": "mailbox-3",
+		"userId": "user-1",
+		"from": {
+			"name": "Demo User",
+			"email": "demo@example.com"
+		},
+		"to": [{
+			"name": "Client Success Team",
+			"email": "success@client.com"
+		}],
+		"cc": [],
+		"subject": "Re: Implementation Support Request",
+		"body": "<p>Hi Team,</p><p>Thank you for reaching out regarding the implementation support.</p><p>I've reviewed your requirements and I'm happy to confirm that we can provide the necessary assistance. Our team will be available throughout the implementation process.</p><p>Next steps:</p><ol><li>Schedule kickoff call for next week</li><li>Share technical documentation</li><li>Set up development environment access</li></ol><p>Please let me know your preferred time for the kickoff call.</p><p>Best regards,<br>Demo User</p>",
+		"preview": "Hi Team, Thank you for reaching out regarding the implementation support. I've reviewed your requirements...",
+		"isRead": true,
+		"isStarred": false,
+		"timestamp": "2025-11-15T11:20:00.000Z",
+		"attachments": []
+	},
+	{
+		"id": "email-8",
+		"mailboxId": "mailbox-4",
+		"userId": "user-1",
+		"from": {
+			"name": "Demo User",
+			"email": "demo@example.com"
+		},
+		"to": [],
+		"cc": [],
+		"subject": "Draft: Monthly Report - November 2025",
+		"body": "<p>[DRAFT - DO NOT SEND]</p><p>Monthly Performance Report - November 2025</p><p>Key Highlights:</p><ul><li>Project completion rate: 95%</li><li>Customer satisfaction: 4.8/5.0</li><li>Revenue growth: 12% MoM</li></ul><p>Challenges:</p><ul><li>Resource allocation needs optimization</li><li>Need to hire 2 additional developers</li></ul><p>[TO BE CONTINUED...]</p>",
+		"preview": "[DRAFT - DO NOT SEND] Monthly Performance Report - November 2025. Key Highlights: Project completion...",
+		"isRead": false,
+		"isStarred": false,
+		"timestamp": "2025-11-18T10:00:00.000Z",
+		"attachments": []
+	},
+	{
+		"id": "email-9",
+		"mailboxId": "mailbox-4",
+		"userId": "user-1",
+		"from": {
+			"name": "Demo User",
+			"email": "demo@example.com"
+		},
+		"to": [],
+		"cc": [],
+		"subject": "Draft: Follow-up on Partnership Discussion",
+		"body": "<p>[DRAFT]</p><p>Dear Partnership Team,</p><p>Following up on our recent conversation about potential collaboration opportunities...</p><p>[INCOMPLETE - ADD MORE DETAILS]</p>",
+		"preview": "[DRAFT] Dear Partnership Team, Following up on our recent conversation about potential collaboration...",
+		"isRead": false,
+		"isStarred": false,
+		"timestamp": "2025-11-17T15:30:00.000Z",
+		"attachments": []
+	},
+	{
+		"id": "email-10",
+		"mailboxId": "mailbox-5",
+		"userId": "user-1",
+		"from": {
+			"name": "Newsletter Team",
+			"email": "newsletter@techblog.com"
+		},
+		"to": [{
+			"name": "Demo User",
+			"email": "demo@example.com"
+		}],
+		"cc": [],
+		"subject": "Weekly Tech Digest: AI & Cloud Computing Trends",
+		"body": "<p>Your weekly dose of technology news and insights.</p><p><strong>This Week's Highlights:</strong></p><ul><li>New AI model breaks performance records</li><li>Cloud computing costs optimization strategies</li><li>Best practices for microservices architecture</li><li>Top 10 developer tools of 2025</li></ul><p>Read full articles on our website.</p>",
+		"preview": "Your weekly dose of technology news and insights. This Week's Highlights: New AI model breaks performance...",
+		"isRead": true,
+		"isStarred": false,
+		"timestamp": "2025-11-10T06:00:00.000Z",
+		"attachments": []
+	}
+]

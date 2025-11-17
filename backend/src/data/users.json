@@ -1,0 +1,25 @@
+[{
+		"id": "user-1",
+		"email": "demo@example.com",
+		"password": "$2a$10$xQZ8kH5YXvJ5vJxJ0lYF0OGE8YZ9YvK9YJvJ0lYF0OGE8YZ9YvK9Y",
+		"name": "Demo User",
+		"googleId": null,
+		"createdAt": "2025-01-01T00:00:00.000Z"
+	},
+	{
+		"id": "user-2",
+		"email": "john.doe@gmail.com",
+		"password": "$2a$10$xQZ8kH5YXvJ5vJxJ0lYF0OGE8YZ9YvK9YJvJ0lYF0OGE8YZ9YvK9Y",
+		"name": "John Doe",
+		"googleId": "google-123456789",
+		"createdAt": "2025-01-15T10:30:00.000Z"
+	},
+	{
+		"id": "user-3",
+		"email": "alice@company.com",
+		"password": "$2a$10$xQZ8kH5YXvJ5vJxJ0lYF0OGE8YZ9YvK9YJvJ0lYF0OGE8YZ9YvK9Y",
+		"name": "Alice Johnson",
+		"googleId": null,
+		"createdAt": "2025-02-01T08:15:00.000Z"
+	}
+]
