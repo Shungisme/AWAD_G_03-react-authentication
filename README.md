@@ -1,98 +1,35 @@
 # 📧 Email Dashboard - React Application with Gmail API Integration
 
-A complete, production-ready email dashboard application built with **React**, **TypeScript**, **Gmail API**, and **OAuth2** authentication following industry best practices.
+## 📹 Demo & Repository
+
+- **Video Demo**: https://drive.google.com/drive/folders/18HjXqy1Oo_eVOO6u1e7L2fgOwF8kW3Q3?usp=drive_link
+- **GitHub Repository**: https://github.com/Shungisme/AWAD_G_03-react-authentication/
+- **Live Frontend**: https://awad-react-authentication.vercel.app
+- **Live Backend**: https://awad-react-authentication.onrender.com
+
+A production-ready email dashboard built with **React**, **TypeScript**, **Gmail API**, and **OAuth2** authentication.
 
 ![Tech Stack](https://img.shields.io/badge/React-19-blue)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue)
 ![Gmail API](https://img.shields.io/badge/Gmail_API-v1-red)
 ![Node.js](https://img.shields.io/badge/Node.js-18+-green)
 
-## ✨ Overview
+## ✨ Key Features
 
-This project implements **Track A (Gmail API Integration)** with a complete OAuth2 Authorization Code Flow, allowing users to access their real Gmail account through a modern, responsive web interface.
-
-### 🎯 Key Features
-
-**Gmail Integration (Track A)**
-
-- ✅ **OAuth2 Authorization Code Flow** (server-side token exchange)
-- ✅ **Real Gmail Access** - Read, send, and modify your actual Gmail
-- ✅ **Secure Token Management** - Refresh tokens stored server-side only
-- ✅ **Automatic Token Refresh** - Seamless experience, never interrupted
-- ✅ **Gmail API Proxy** - Backend handles all Gmail API calls securely
-
-**Authentication**
-
-- ✅ **Google OAuth 2.0** Sign-In with proper authorization flow
-- ✅ **Demo Account** - Email/password login with mock data
-- ✅ **JWT Token Management** (access + refresh tokens)
-- ✅ **Concurrency Lock** - Prevents multiple refresh attempts
-- ✅ **Protected Routes** - Automatic authentication checks
-
-**Email Features**
-
-- ✅ **3-Column Responsive Layout** - Mailboxes, Email List, Email Detail
-- ✅ **Real Gmail Operations** - Star, delete, mark read/unread, send emails
-- ✅ **Attachment Support** - View and download email attachments
-- ✅ **HTML Email Rendering** - Properly formatted email display
-- ✅ **Search & Filter** - Find emails quickly
-- ✅ **Compose & Reply** - Send new emails and reply to existing ones
-
-📖 **[Complete Gmail Integration Guide →](GMAIL_INTEGRATION_GUIDE.md)**
+- ✅ **OAuth2 Authorization Code Flow** - Secure server-side token exchange
+- ✅ **Real Gmail Integration** - Read, send, and manage your Gmail
+- ✅ **Automatic Token Refresh** - Seamless user experience
+- ✅ **3-Column Responsive Layout** - Mailboxes, List, Detail view
+- ✅ **Email Operations** - Star, delete, mark read/unread, compose, reply
+- ✅ **Attachment Support** - View and download attachments
+- ✅ **Protected Routes** - JWT-based authentication
 
 ## 🏗️ Architecture
 
-### Project Structure
-
-```
-G_03/
-├── backend/                    # Express.js + TypeScript API
-│   ├── src/
-│   │   ├── data/
-│   │   │   ├── users.json     # Mock users
-│   │   │   ├── mailboxes.json # Mailbox data
-│   │   │   └── emails.json    # Email messages
-│   │   ├── middleware/
-│   │   │   └── auth.ts        # JWT verification
-│   │   ├── routes/
-│   │   │   ├── auth.ts        # Auth endpoints
-│   │   │   ├── mailboxes.ts   # Mailbox endpoints
-│   │   │   └── emails.ts      # Email endpoints
-│   │   ├── utils/
-│   │   │   └── hashPassword.ts
-│   │   └── server.ts          # Main server
-│   ├── package.json
-│   ├── tsconfig.json
-│   └── .env
-│
-├── frontend/                   # React + TypeScript + Vite
-│   ├── src/
-│   │   ├── api/
-│   │   │   └── axios.ts       # Axios client + interceptors
-│   │   ├── components/
-│   │   │   ├── auth/
-│   │   │   │   └── ProtectedRoute.tsx
-│   │   │   └── dashboard/
-│   │   │       ├── Sidebar.tsx
-│   │   │       ├── EmailList.tsx
-│   │   │       └── EmailDetail.tsx
-│   │   ├── contexts/
-│   │   │   └── AuthContext.tsx
-│   │   ├── pages/
-│   │   │   ├── Login.tsx
-│   │   │   └── Dashboard.tsx
-│   │   ├── types/
-│   │   │   └── index.ts
-│   │   ├── App.tsx
-│   │   ├── main.tsx
-│   │   └── index.css
-│   ├── package.json
-│   ├── tsconfig.json
-│   ├── tailwind.config.js
-│   └── .env
-│
-└── README.md (this file)
-```
+- **Frontend**: React 19 + TypeScript + Vite + TailwindCSS
+- **Backend**: Express.js + TypeScript + Gmail API
+- **Auth**: OAuth2 Authorization Code Flow + JWT
+- **Deployment**: Vercel (Frontend) + Render (Backend)
 
 ## 🚀 Quick Start
 
@@ -188,44 +125,22 @@ Open `http://localhost:5173` and either:
 ## 🔐 Authentication Flow
 
 ### Login Process
-
-```mermaid
-sequenceDiagram
-    User->>Frontend: Enter credentials
-    Frontend->>Backend: POST /api/auth/login
-    Backend->>Backend: Verify password
-    Backend->>Frontend: Return tokens + user
-    Frontend->>Memory: Store access token
-    Frontend->>LocalStorage: Store refresh token
-    Frontend->>Dashboard: Redirect
-```
+1. User enters credentials → Frontend sends to backend
+2. Backend verifies password → Generates JWT tokens
+3. Access token stored in-memory, refresh token in localStorage
+4. Redirect to dashboard
 
 ### Token Refresh Flow
-
-```mermaid
-sequenceDiagram
-    Frontend->>Backend: API request (expired token)
-    Backend->>Frontend: 401 Unauthorized
-    Frontend->>Frontend: Check refresh queue
-    Frontend->>Backend: POST /api/auth/refresh
-    Backend->>Frontend: New access token
-    Frontend->>Memory: Update access token
-    Frontend->>Backend: Retry original request
-```
+1. API request with expired token → Backend returns 401
+2. Frontend checks refresh queue (concurrency lock)
+3. Single refresh request → Backend returns new access token
+4. Update token in-memory → Retry all queued requests
 
 ### Google OAuth Flow
-
-```mermaid
-sequenceDiagram
-    User->>Google: Click "Sign in with Google"
-    Google->>User: Show consent screen
-    User->>Google: Grant permission
-    Google->>Frontend: Return credential
-    Frontend->>Backend: POST /api/auth/google
-    Backend->>Google: Verify credential (mock)
-    Backend->>Frontend: Return tokens + user
-    Frontend->>Dashboard: Redirect
-```
+1. Click "Sign in with Google" → Google consent screen
+2. User grants permission → Google returns credential
+3. Frontend sends to backend → Backend verifies with Google
+4. Backend generates app tokens → Redirect to dashboard
 
 ## 🛡️ Security Design
 
@@ -253,39 +168,10 @@ sequenceDiagram
 
 ### Concurrency Lock Pattern
 
-```typescript
-// Prevents multiple simultaneous refresh requests
-let isRefreshing = false;
-let failedQueue = [];
-
-const processQueue = (error, token = null) => {
-  failedQueue.forEach((prom) => {
-    if (error) prom.reject(error);
-    else prom.resolve(token);
-  });
-  failedQueue = [];
-};
-
-// On 401 error
-if (isRefreshing) {
-  // Queue this request
-  return new Promise((resolve, reject) => {
-    failedQueue.push({ resolve, reject });
-  });
-}
-
-isRefreshing = true;
-// Perform refresh...
-processQueue(null, newToken);
-isRefreshing = false;
-```
-
-**Benefits:**
-
-- ✅ Only ONE refresh request even with 100 concurrent API calls
-- ✅ All failed requests retry with new token
-- ✅ Prevents refresh token exhaustion
-- ✅ Better UX (no multiple auth prompts)
+**Implementation**: `frontend/src/api/axios.ts` uses `isRefreshing` flag and `failedQueue` to ensure:
+- ✅ Only ONE refresh request for multiple concurrent 401 errors
+- ✅ All failed requests queued and retried with new token
+- ✅ Prevents token exhaustion and multiple auth prompts
 
 ## 📊 API Reference
 
@@ -351,253 +237,340 @@ const emails = await apiClient.get("/mailboxes/inbox-1/emails");
 └───────────┴────────────────────┴───────────────────┘
 ```
 
-### Responsive Behavior
+## 🌐 Deployed Public URLs
 
-- **Desktop**: 3-column layout
-- **Tablet**: 2-column (mailboxes collapse to icon sidebar)
-- **Mobile**: Single column with navigation
+- **Frontend**: https://awad-react-authentication.vercel.app
+- **Backend**: https://awad-react-authentication.onrender.com
+- **Demo Account**: `demo@example.com` / `demo123`
 
-## 🧪 Testing the Application
+## 🔐 Google OAuth Setup Guide
 
-### Test Scenarios
+### Step 1: Create Google Cloud Project
 
-1. **Login Flow**
+1. Go to [Google Cloud Console](https://console.cloud.google.com/)
+2. Click **"Select a project"** → **"New Project"**
+3. Enter project name: `Email Dashboard App`
+4. Click **"Create"**
 
-   ```
-   ✓ Valid credentials → Dashboard
-   ✓ Invalid credentials → Error message
-   ✓ Google OAuth → Dashboard
-   ✓ Empty fields → Validation error
-   ```
+### Step 2: Enable Gmail API (if using Gmail integration)
 
-2. **Token Refresh**
+1. In the left sidebar, go to **"APIs & Services"** → **"Library"**
+2. Search for **"Gmail API"**
+3. Click **"Enable"**
 
-   ```
-   ✓ Wait 16 minutes → Auto refresh
-   ✓ Make API call → Token refreshes automatically
-   ✓ Multiple calls → Only one refresh request
-   ```
+### Step 3: Configure OAuth Consent Screen
 
-3. **Email Operations**
+1. Go to **"APIs & Services"** → **"OAuth consent screen"**
+2. Select **"External"** user type
+3. Fill in required fields:
+   - **App name**: Email Dashboard
+   - **User support email**: your-email@gmail.com
+   - **Developer contact**: your-email@gmail.com
+4. Click **"Save and Continue"**
+5. **Scopes** (optional for now, add if using Gmail API):
+   - `https://www.googleapis.com/auth/gmail.readonly`
+   - `https://www.googleapis.com/auth/gmail.modify`
+   - `https://www.googleapis.com/auth/gmail.send`
+6. **Test users**: Add your Gmail address
+7. Click **"Save and Continue"**
 
-   ```
-   ✓ Click email → Display in detail pane
-   ✓ Star email → Updates icon
-   ✓ Delete email → Removed from list
-   ✓ Mark as read → Updates styling
-   ✓ Select multiple → Bulk actions appear
-   ```
+### Step 4: Create OAuth 2.0 Client ID
 
-4. **Session Persistence**
-   ```
-   ✓ Refresh page → Still logged in
-   ✓ Close tab → Still logged in (7 days)
-   ✓ Click logout → Tokens cleared
-   ```
+1. Go to **"APIs & Services"** → **"Credentials"**
+2. Click **"+ CREATE CREDENTIALS"** → **"OAuth 2.0 Client IDs"**
+3. Select **"Web application"**
+4. Configure:
+   - **Name**: `Email Dashboard OAuth Client`
+   - **Authorized JavaScript origins**:
+     ```
+     http://localhost:5173
+     https://awad-react-authentication.vercel.app
+     ```
+   - **Authorized redirect URIs**:
+     ```
+     http://localhost:5173
+     http://localhost:5000/api/auth/google/callback
+     https://awad-react-authentication.vercel.app
+     https://awad-react-authentication.onrender.com/api/auth/google/callback
+     ```
+5. Click **"Create"**
+6. **Copy** the `Client ID` and `Client Secret`
 
-## 📱 Screenshots
+### Step 5: Update Environment Variables
 
-### Login Page
-
+**Backend `.env`:**
+```env
+GOOGLE_CLIENT_ID=your-client-id.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=your-client-secret
+GOOGLE_REDIRECT_URI=http://localhost:5000/api/auth/google/callback
 ```
-[Modern login form with email/password fields]
-[Google Sign-In button]
-[Demo credentials shown]
+
+**Frontend `.env`:**
+```env
+VITE_GOOGLE_CLIENT_ID=your-client-id.apps.googleusercontent.com
 ```
 
-### Dashboard
-
-```
-[3-column layout with mailboxes, emails, and detail view]
-[Unread count badges on mailboxes]
-[Star icons, checkboxes, and action buttons]
-```
-
-## 🚀 Deployment
-
-### Backend Deployment (Render / Railway)
-
-1. **Create new web service**
-2. **Connect repository**
-3. **Configure:**
-   ```
-   Build Command: cd backend && npm install && npm run build
-   Start Command: cd backend && npm start
-   ```
-4. **Environment Variables:**
-   ```
-   JWT_SECRET=<generate-random-string>
-   JWT_REFRESH_SECRET=<generate-random-string>
-   ACCESS_TOKEN_EXPIRY=15m
-   REFRESH_TOKEN_EXPIRY=7d
-   GOOGLE_CLIENT_ID=<your-google-client-id>
-   NODE_ENV=production
-   FRONTEND_URL=<your-frontend-url>
-   ```
-
-### Frontend Deployment (Vercel / Netlify)
-
-1. **Create new project**
-2. **Connect repository**
-3. **Configure:**
-   ```
-   Build Command: cd frontend && npm install && npm run build
-   Publish Directory: frontend/dist
-   ```
-4. **Environment Variables:**
-   ```
-   VITE_API_URL=<your-backend-url>/api
-   VITE_GOOGLE_CLIENT_ID=<your-google-client-id>
-   ```
-
-### Production Optimization
+### Step 6: Restart Servers
 
 ```bash
-# Frontend build
+# Backend
+cd backend
+npm run dev
+
+# Frontend (new terminal)
 cd frontend
-npm run build
-
-# Output: dist/ folder (~200KB gzipped)
-# - Code splitting
-# - Tree shaking
-# - Minification
+npm run dev
 ```
 
-## 🎯 Stretch Goals Implementation
+### Important Notes
 
-### 1. Silent Token Refresh
+- **Production**: Update redirect URIs to use production URLs
+- **Security**: Never commit `.env` files to Git
+- **OAuth Consent**: For production, submit for Google verification
+- **Scopes**: Request minimal scopes needed for your app
 
-**Concept**: Refresh token in background before expiry
+## 📧 IMAP/POP3 Test Accounts Setup
 
-```typescript
-// In AuthContext.tsx
-useEffect(() => {
-  const interval = setInterval(async () => {
-    if (getRefreshToken()) {
-      try {
-        const response = await apiClient.post("/auth/refresh", {
-          refreshToken: getRefreshToken(),
-        });
-        setAccessToken(response.data.accessToken);
-      } catch (error) {
-        logout();
-      }
-    }
-  }, 14 * 60 * 1000); // Refresh every 14 minutes
+### Gmail via IMAP (Recommended for Testing)
 
-  return () => clearInterval(interval);
-}, []);
+#### Step 1: Enable IMAP in Gmail
+1. Go to Gmail Settings → **"Forwarding and POP/IMAP"**
+2. Enable **"IMAP access"**
+3. Click **"Save Changes"**
+
+#### Step 2: Generate App Password
+1. Go to [Google Account Security](https://myaccount.google.com/security)
+2. Enable **2-Step Verification** (required)
+3. Go to **"App passwords"**
+4. Select **"Mail"** and **"Other (Custom name)"**
+5. Enter name: `Email Dashboard IMAP`
+6. Click **"Generate"**
+7. **Copy** the 16-character password
+
+#### Step 3: Configure Backend
+**Backend `.env`:**
+```env
+IMAP_HOST=imap.gmail.com
+IMAP_PORT=993
+IMAP_SECURE=true
+IMAP_USER=your-email@gmail.com
+IMAP_PASSWORD=your-16-char-app-password
+
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_SECURE=false
+SMTP_USER=your-email@gmail.com
+SMTP_PASSWORD=your-16-char-app-password
 ```
 
-### 2. HttpOnly Cookie for Refresh Token
+### Alternative Providers
 
-**Backend (server.ts):**
+#### Outlook/Hotmail IMAP
+```env
+IMAP_HOST=outlook.office365.com
+IMAP_PORT=993
+IMAP_SECURE=true
+IMAP_USER=your-email@outlook.com
+IMAP_PASSWORD=your-password
 
+SMTP_HOST=smtp.office365.com
+SMTP_PORT=587
+```
+
+#### Yahoo Mail IMAP
+```env
+IMAP_HOST=imap.mail.yahoo.com
+IMAP_PORT=993
+IMAP_SECURE=true
+IMAP_USER=your-email@yahoo.com
+IMAP_PASSWORD=your-app-password  # Generate in Yahoo Account Security
+
+SMTP_HOST=smtp.mail.yahoo.com
+SMTP_PORT=587
+```
+
+### Testing IMAP Connection
+
+```bash
+cd backend
+npm install imap-simple
+node test-imap.js  # Create test file with IMAP config
+```
+
+See `backend/test-imap.js` for connection testing code.
+
+## 🔒 Token Storage & Security Considerations
+
+### Access Token: In-Memory Storage
+
+- ✅ **XSS Protection**: Not in localStorage/sessionStorage
+- ✅ **OAuth 2.0 Best Practice**: Industry standard
+- ✅ **Short Lifetime**: 15 minutes limits exposure
+- Implementation: `frontend/src/api/axios.ts`
+
+### Refresh Token: localStorage (Dev) → HttpOnly Cookie (Prod)
+
+**Current (Development)**:
+- Location: `localStorage.setItem('refreshToken', token)`
+- ✅ Persistence across sessions
+- ⚠️ XSS vulnerability
+
+**Production Recommendation**:
+- HttpOnly Secure Cookie with `SameSite=Strict`
+- ✅ XSS protection
+- ✅ CSRF protection
+- See code in `backend/src/routes/auth.ts` (commented)
+
+### Comparison Table
+
+| Storage Method | XSS Risk | CSRF Risk | Persistence | Complexity |
+|---------------|----------|-----------|-------------|------------|
+| **In-Memory** | ✅ Low | ✅ N/A | ❌ No | ✅ Simple |
+| **localStorage** | ❌ High | ✅ N/A | ✅ Yes | ✅ Simple |
+| **HttpOnly Cookie** | ✅ Low | ⚠️ Medium* | ✅ Yes | ⚠️ Medium |
+| **SessionStorage** | ❌ High | ✅ N/A | ⚠️ Tab-only | ✅ Simple |
+
+*Mitigated with `SameSite` attribute
+
+### Security Measures Implemented
+
+1. **Short-Lived Access Tokens**: 15 minutes → limits exposure if leaked
+2. **Refresh Token Rotation**: Each refresh generates new tokens (optional)
+3. **Token Revocation**: Logout clears refresh token from server store
+4. **HTTPS Only**: Production enforces SSL/TLS
+5. **CORS Configuration**: Restricted origins
+6. **Input Validation**: Client and server-side
+7. **Password Hashing**: bcrypt with salt rounds
+8. **Rate Limiting**: Prevent brute-force attacks (recommended for production)
+
+### Justification for Current Approach
+
+For this **academic project**, we use:
+- Access token: **In-memory** (secure, industry standard)
+- Refresh token: **localStorage** (convenient for development/demo)
+
+For **production deployment**, migrate to:
+- Access token: **In-memory** (unchanged)
+- Refresh token: **HttpOnly Secure Cookie** with `SameSite=Strict`
+
+This balances **security**, **usability**, and **implementation complexity** for learning objectives.
+
+## 🧪 Simulating Token Expiry for Demo
+
+### Method 1: Shorten Token Lifetime (Recommended for Testing)
+
+**Backend `.env`:**
+```env
+ACCESS_TOKEN_EXPIRY=1m   # 1 minute instead of 15m
+REFRESH_TOKEN_EXPIRY=5m  # 5 minutes instead of 7d
+```
+
+**Test Steps**:
+1. Login to app
+2. Wait 1 minute (access token expires)
+3. Click any email or mailbox → Backend returns 401
+4. Frontend automatically refreshes → User sees no interruption
+5. Wait 5 minutes (refresh token expires)
+6. Click any action → Forced logout
+
+### Method 2: Manual Token Manipulation (Browser DevTools)
+
+**Access Token Expiry**:
+```javascript
+// In browser console
+// Delete access token from memory (simulates expiry)
+// Then make any API call - should trigger refresh
+
+// Open DevTools → Console
+localStorage.getItem('refreshToken')  // Verify exists
+// Make an API call - frontend will auto-refresh
+```
+
+**Refresh Token Expiry**:
+```javascript
+// In browser console
+localStorage.removeItem('refreshToken')
+// Next API call will fail and force logout
+```
+
+### Method 3: Backend Debug Endpoint (Development Only)
+
+**Add to `backend/src/routes/auth.ts`:**
 ```typescript
-app.post("/api/auth/login", async (req, res) => {
-  // ... authentication logic
-
-  res.cookie("refreshToken", refreshToken, {
-    httpOnly: true, // Not accessible via JavaScript
-    secure: true, // HTTPS only
-    sameSite: "strict", // CSRF protection
-    maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-  });
-
-  res.json({ accessToken, user });
+// REMOVE IN PRODUCTION
+router.post('/debug/expire-token', (req: Request, res: Response) => {
+  const { refreshToken } = req.body;
+  
+  // Remove from store to simulate expiry
+  refreshTokenStore.delete(refreshToken);
+  
+  res.json({ message: 'Refresh token expired' });
 });
 ```
 
-**Frontend (axios.ts):**
+**Frontend test**:
+```bash
+curl -X POST http://localhost:5000/api/auth/debug/expire-token \
+  -H "Content-Type: application/json" \
+  -d "{\"refreshToken\":\"$(localStorage.getItem('refreshToken'))\"}"
+```
 
+### Method 4: Modify JWT Expiry Time Manually
+
+**Create expired token for testing**:
 ```typescript
-// No need to store in localStorage
-// Browser automatically sends cookie
-
-const response = await axios.post(
-  `${API_URL}/auth/refresh`,
-  {},
-  {
-    withCredentials: true, // Include cookies
-  }
+// backend/src/routes/auth.ts
+const testExpiredToken = jwt.sign(
+  { userId, email },
+  SECRET,
+  { expiresIn: '-1m' }  // Already expired
 );
 ```
 
-### 3. Multi-Tab Logout Sync
+### Demo Video Steps
 
-**Implementation:**
+1. **Show Normal Flow**:
+   - Login
+   - Browse emails
+   - Check localStorage for refresh token
 
-```typescript
-// In AuthContext.tsx
-useEffect(() => {
-  const handleStorageChange = (e: StorageEvent) => {
-    if (e.key === "logout-event") {
-      // Another tab logged out
-      clearTokens();
-      setUser(null);
-      navigate("/login");
-    }
-  };
+2. **Simulate Access Token Expiry**:
+   - Wait 1 minute (with `ACCESS_TOKEN_EXPIRY=1m`)
+   - Open email → Show network tab: 401 → automatic refresh → 200 OK
+   - User sees no interruption
 
-  window.addEventListener("storage", handleStorageChange);
-  return () => window.removeEventListener("storage", handleStorageChange);
-}, []);
+3. **Simulate Refresh Token Expiry**:
+   - Clear `localStorage.removeItem('refreshToken')`
+   - Click any action
+   - Show: Forced logout, redirected to `/login`
+   - Show: Tokens cleared from storage
 
-const logout = () => {
-  clearTokens();
-  setUser(null);
+4. **Re-login**:
+   - Login again
+## 🚀 Deployment
 
-  // Notify other tabs
-  localStorage.setItem("logout-event", Date.now().toString());
-  localStorage.removeItem("logout-event");
-
-  navigate("/login");
-};
+### Backend (Render/Railway)
+```bash
+Build: cd backend && npm install && npm run build
+Start: cd backend && npm start
 ```
+
+**Environment Variables**: JWT_SECRET, JWT_REFRESH_SECRET, GOOGLE_CLIENT_ID, NODE_ENV, FRONTEND_URL
+
+### Frontend (Vercel/Netlify)
+```bash
+Build: cd frontend && npm install && npm run build
+Publish: frontend/dist
+```
+
+**Environment Variables**: VITE_API_URL, VITE_GOOGLE_CLIENT_ID
 
 ## 🔧 Troubleshooting
 
-### Backend won't start
-
-```bash
-# Check if port 5000 is in use
-lsof -i :5000
-
-# Or use different port
-PORT=5001 npm run dev
-```
-
-### Frontend can't connect to backend
-
-```bash
-# Check VITE_API_URL in frontend/.env
-# Should be: http://localhost:5000/api
-
-# Verify CORS in backend/server.ts
-# Should allow: http://localhost:5173
-```
-
-### Google OAuth not working
-
-```
-# For development, the mock backend accepts any credential
-# For production, set up real Google OAuth:
-# 1. Go to Google Cloud Console
-# 2. Create OAuth 2.0 Client ID
-# 3. Add authorized origins
-# 4. Update GOOGLE_CLIENT_ID in both .env files
-```
-
-### Tokens not refreshing
-
-```bash
-# Check browser console for errors
-# Verify refresh token exists:
-localStorage.getItem('refreshToken')
-
-# Check backend logs for refresh endpoint
-# Ensure JWT_REFRESH_SECRET matches
-```
+- **Port in use**: `lsof -i :5000` or use different PORT
+- **CORS errors**: Check FRONTEND_URL in backend .env
+- **Google OAuth fails**: Verify Client ID and authorized origins
+- **Token refresh fails**: Check JWT secrets match in .env
 
 ## 📚 Tech Stack Justification
 
